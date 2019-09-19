@@ -1,13 +1,6 @@
 package com.lambad.protectapp;
 
-import com.lambad.protectapp.AES;
-import com.lambad.protectapp.Dx;
-import com.lambad.protectapp.Signature;
-import com.lambad.protectapp.Utils;
-import com.lambad.protectapp.Zip;
-
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 
