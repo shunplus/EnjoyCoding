@@ -1,12 +1,14 @@
-package com.lambad.rxjavademo;
+package com.example.rxjavademo;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.lambad.rxjavademo.RxTimer;
+
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -59,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
         //每间隔4秒后执行任务
         rxTimer.interval(4000, number -> Log.i("lambda","interval= "+number));
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(new Intent(this, ShunService.class));
+        } else {
+            startService(new Intent(this, ShunService.class));
+        }
     }
 
     @Override

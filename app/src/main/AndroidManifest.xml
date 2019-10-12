@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lambad.rxjavademo">
+    package="com.example.rxjavademo">
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -9,13 +11,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.lambad.rxjavademo.MainActivity">
+        <activity
+            android:name="com.lambad.rxjavademo.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="com.example.rxjavademo.MainActivity"></activity>
+
+        <service
+            android:name="com.example.rxjavademo.ShunService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote">
+
+            <intent-filter>
+                <!--是客户端用于访问AIDL服务的ID  -->
+                <action android:name="com.lambad.rxjavademo.IMyService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
