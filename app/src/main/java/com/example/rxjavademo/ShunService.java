@@ -1,7 +1,6 @@
 package com.example.rxjavademo;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
@@ -37,6 +36,7 @@ public class ShunService extends Service {
         }
     };
 
+
     @Override
     public IBinder onBind(Intent intent) {
         return iBinder;
@@ -58,23 +58,28 @@ public class ShunService extends Service {
 
     }
 
+    /**
+     * @author xushun
+     * @time 2019/10/15 20:01
+     */
     private void startForegroundService() {
 
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         //创建NotificationChannel
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            NotificationChannel channel = new NotificationChannel(notificationId, notificationName, NotificationManager.IMPORTANCE_HIGH);
-
-            notificationManager.createNotificationChannel(channel);
-
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//
+//            NotificationChannel channel = new NotificationChannel(notificationId, notificationName, NotificationManager.IMPORTANCE_HIGH);
+//
+//            notificationManager.createNotificationChannel(channel);
+//
+//        }
 
         startForeground(1, getNotification());
 
     }
+
 
     private Notification getNotification() {
 
