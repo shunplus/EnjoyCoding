@@ -10,10 +10,31 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        debug {
+            storeFile file('../lawwidsdom.jks')
+            keyAlias 'com.shgbit'
+            keyPassword '123456'
+            storePassword '123456'
+        }
+        release {
+            storeFile file('../lawwidsdom.jks')
+            keyAlias 'com.shgbit'
+            keyPassword '123456'
+            storePassword '123456'
+            v2SigningEnabled false
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
         }
     }
     //支持lambda表达式
@@ -53,5 +74,10 @@ dependencies {
     //butterknife
     api 'com.jakewharton:butterknife:10.0.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+    //TabLayout
+//    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.androidkun:XTabLayout:1.1.3'
+
+    implementation files('libs/BASE64.jar')
 
 }

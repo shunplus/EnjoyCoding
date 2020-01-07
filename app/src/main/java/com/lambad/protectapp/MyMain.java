@@ -1,5 +1,7 @@
 package com.lambad.protectapp;
 
+import com.example.rxjavademo.ShunUtils;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
@@ -12,6 +14,8 @@ import java.io.FilenameFilter;
 public class MyMain {
 	public static void main(String[] args) throws Exception {
 
+		String md555 = ShunUtils.getFileMD5(new File("D:\\projects\\yizhixing\\LawInforce\\app\\release\\ydzx128_sign.apk"));
+		System.out.println(md555);
 		/**
 		 * 准备工作
 		 */

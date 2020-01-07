@@ -9,7 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lambad.hookplugin.HookHelperShun;
 import com.lambad.hookplugin.TargetActivity;
+import com.lambad.protectapp.Signature;
 import com.lambad.rxjavademo.RxTimer;
+import com.lambad.sideslide.SideSlideActivity;
+import com.lambad.storageencrypt.AESSPUtils;
+import com.lambad.storageencrypt.SpUtils;
+
+import java.io.File;
+import java.io.IOException;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -26,6 +33,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        String stMd5 = ShunUtils.getSignMd5Str(this);
+
+        Log.d(ShunConstant.LAMBDA, stMd5);
+
+        try {
+            Signature.signature22(new File(""), new File(""));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         //1.创建一个observable 可被观察的
         Observable<String> observable = Observable.create(emitter -> {
@@ -102,5 +122,22 @@ public class MainActivity extends AppCompatActivity {
         HookHelperShun.hookHandler();
         Intent intent = new Intent(this, TargetActivity.class);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.slide)
+    public void slide() {
+        startActivity(new Intent(this, SideSlideActivity.class));
+    }
+
+    @OnClick(R.id.tv_aes)
+    public void tv_aes() {
+
+
+        SpUtils.putString("xushun", "12131313");
+        Log.d(ShunConstant.LAMBDA, SpUtils.getString("xushun", "77777"));
+
+        AESSPUtils.putString("xushunwww", "ewewew");
+        Log.d(ShunConstant.LAMBDA, SpUtils.getString("xushunwww", "8888"));
+
     }
 }

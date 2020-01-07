@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,5 +13,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="启动插件activity" />
+
+    <TextView
+        android:id="@+id/slide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="启动slideActivity" />
+
+    <TextView
+        android:id="@+id/tv_aes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="AES加密"></TextView>
 
 </LinearLayout>
