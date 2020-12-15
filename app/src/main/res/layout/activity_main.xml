@@ -28,4 +28,18 @@
         android:layout_marginTop="20dp"
         android:text="AES加密"></TextView>
 
+    <TextView
+        android:id="@+id/tv_base64"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="base64解密"></TextView>
+
+    <TextView
+        android:id="@+id/web_v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="测试加载Web"></TextView>
+
 </LinearLayout>

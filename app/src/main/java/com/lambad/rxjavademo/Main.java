@@ -1,9 +1,6 @@
 package com.lambad.rxjavademo;
 
 
-import android.util.Base64;
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.lambad.json.JsonBean;
 import com.lambad.json.JsonUtil;
@@ -23,6 +20,7 @@ public class Main {
 //
 //       System.out.println(Base64.decode(encode.getBytes(),Base64.DEFAULT));
 
+//        System.out.println(EncryptUtils.decodeToString("aMjAwMDAwMTQwNzE0MDAxMAPdcssPdcssz"));
         textJson();
 
         String add=null;
@@ -32,6 +30,8 @@ public class Main {
         }else {
             System.out.print("no  equals  ");
         }
+
+
     }
 
     public static void textJson(){
