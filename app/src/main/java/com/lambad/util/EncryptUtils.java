@@ -1,4 +1,4 @@
-package com.lambad;
+package com.lambad.util;
 
 import android.text.TextUtils;
 import android.util.Base64;

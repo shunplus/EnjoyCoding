@@ -13,14 +13,14 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file('../lawwidsdom.jks')
-            keyAlias 'com.shgbit'
+            storeFile file('../appshun.jks')
+            keyAlias 'shgbit'
             keyPassword '123456'
             storePassword '123456'
         }
         release {
             storeFile file('../lawwidsdom.jks')
-            keyAlias 'com.shgbit'
+            keyAlias 'shgbit'
             keyPassword '123456'
             storePassword '123456'
             v2SigningEnabled false

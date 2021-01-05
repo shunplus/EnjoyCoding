@@ -17,11 +17,19 @@ import com.lambad.rxjavademo.RxTimer;
 import com.lambad.sideslide.SideSlideActivity;
 import com.lambad.storageencrypt.AESSPUtils;
 import com.lambad.storageencrypt.SpUtils;
+import com.lambad.util.RsaUtils;
+import com.lambad.util.aessp.PLog;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.Base64;
 import java.util.WeakHashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -57,11 +65,40 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
+
+    public static String replaceBlank(String src) {
+        String dest = "";
+        if (src != null) {
+            Pattern pattern = Pattern.compile("\t|\r|\n|\\s*");
+            Matcher matcher = pattern.matcher(src);
+            dest = matcher.replaceAll("");
+        }
+        return dest;
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("type", "0");
+            jsonObject.put("zybm", "10001");
+
+            String encryptSresult = RsaUtils.encrypt(jsonObject.toString(), RsaUtils.getPublicKey(RsaUtils.publicKey));
+            PLog.i(ShunConstant.LAMBDA, "result =" + encryptSresult);
+
+            encryptSresult = replaceBlank(encryptSresult);
+            PLog.i(ShunConstant.LAMBDA, "result replaceBlank=" + encryptSresult);
+            String urlStr = URLEncoder.encode(encryptSresult, "UTF-8");
+            PLog.i(ShunConstant.LAMBDA, "encodeStr=" + urlStr);
+            String decodeStr = URLDecoder.decode(urlStr, "UTF-8");
+            PLog.i(ShunConstant.LAMBDA, "decodeStr=" + decodeStr);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         String stMd5 = ShunUtils.getSignMd5Str(this);
 
@@ -72,6 +109,25 @@ public class MainActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        String text = "TPFWaPJ/7y/c6+mdoBAdBfO3OplRnPOk7qKORjRGbDCW1sRXqW+iH3KCbE8NJ4mdPmItdBcwpmYB\n" +
+                "FcQEYnVWj9oqfxScJQherXmVg34ijKKCQ+hQVLjudAdyR2r3bHJUq+AMEF7kQ3WFVoGz6vJ0u2Cv\n" +
+                "MUcxFIogydZdYtt/pV4=";
+
+
+        try {
+//            String entryStr = RsaUtils.encrypt("{\\n\" +\n" +
+//                    "           \"    \\\"type\\\": 1,\\n\" +\n" +
+//                    "           \"    \\\"zybm\\\": 10001\\n\" +\n" +
+//                    "           \"}", RsaUtils.getPublicKey(RsaUtils.publicKey));
+//            PLog.e(ShunConstant.LAMBDA, " entryStr = " + entryStr);
+//            entryStr = replaceBlank(entryStr);
+//            PLog.e(ShunConstant.LAMBDA, " entryStr = " + entryStr);
+//            PLog.outPutLog(entryStr);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
